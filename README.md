@@ -46,15 +46,25 @@ Aplikasi ini dibuat dengan antarmuka modern, responsif, dan mudah digunakan — 
 
 ## 📂 Struktur Folder
 │
+
 ├── index.html # Dashboard utama
+
 ├── create_tiket.html # Form pembuatan tiket
+
 ├── daftar_tiket.html # Tabel daftar tiket
+
 ├── agents.html # Manajemen agent
+
 ├── my_account.html # Profil pengguna
+
 ├── create_account.html # Form pembuatan akun
+
 ├── settings.html # Pengaturan aplikasi
+
 ├── login.html # Halaman login
+
 ├── forgot_password.html # Lupa password
+
 │
 ├── css/
 │ └── style.css # File gaya utama
