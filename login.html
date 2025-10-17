@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Login - Helpdesk</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="icon" type="image/png" href="image/icon_helpdesk1.png"/>
+<style>
+/* Tambahan kecil khusus halaman login */
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #f3f4f6, #e9ecef);
+  margin: 0;
+}
+
+.login-card {
+  max-width: 420px;
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+  overflow: hidden;
+}
+
+/* Brand / Logo lebih besar & center */
+.login-brand {
+  display: flex;
+  flex-direction: column;     /* logo di atas, teks di bawah */
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.login-brand img {
+  height: 150px;              /* diperbesar */
+  width: 150px;
+  object-fit: cover;          /* proporsional */
+  border-radius: 30%;         /* opsional: bulat */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.login-brand img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+}
+
+.login-brand span,
+.login-brand h4 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #343a40;
+  letter-spacing: .3px;
+  margin: 0;
+}
+
+/* Tombol login & input */
+.btn-login {
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+}
+
+/* Opsional: animasi masuk halus untuk logo */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.login-brand img { animation: fadeUp .35s ease both; }
+.login-brand h4, .login-brand span { animation: fadeUp .45s ease .05s both; }
+
+</style>
+</head>
+<body>
+
+  <div class="card login-card">
+    <div class="card-body p-4 p-md-5">
+      <!-- Brand -->
+        <div class="login-brand text-center">
+        <img src="image/icon_helpdesk.png" alt="Logo" class="login-logo">
+        <h4 class="mt-3 fw-bold text-dark">Emran Cargo Logistics Helpdesk</h4>
+        </div>
+      <p class="text-muted text-center mb-4">Silakan login untuk melanjutkan</p>
+
+      <!-- Form Login -->
+      <form id="loginForm" novalidate>
+        <div class="mb-3">
+          <label for="loginId" class="form-label">Email atau Username</label>
+          <input type="text" class="form-control" id="loginId" placeholder="nama@perusahaan.com atau username" required>
+        </div>
+
+        <div class="mb-2">
+          <label for="loginPass" class="form-label">Password</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="loginPass" placeholder="Masukkan password" required minlength="6">
+            <button class="btn btn-outline-secondary" type="button" id="togglePass">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">Remember me</label>
+          </div>
+          <a href="forget_password.html" class="small text-decoration-none">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 btn-login">
+          <i class="bi bi-box-arrow-in-right me-1"></i> Login
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap & Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Toggle show/hide password
+    const toggleBtn = document.getElementById('togglePass');
+    const passInput = document.getElementById('loginPass');
+    toggleBtn.addEventListener('click', () => {
+      const isPass = passInput.type === 'password';
+      passInput.type = isPass ? 'text' : 'password';
+      toggleBtn.innerHTML = isPass ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
+    });
+
+    // Dummy login handler (validasi ringan)
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return;
+      }
+
+      // Optional: simpan rememberMe
+      const remember = document.getElementById('rememberMe').checked;
+      if (remember) {
+        localStorage.setItem('rememberUser', document.getElementById('loginId').value);
+      } else {
+        localStorage.removeItem('rememberUser');
+      }
+
+      // Toast sukses
+      showToast('Login sukses! Mengalihkan ke Dashboard...');
+      setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+    });
+
+    // Prefill jika remember
+    const savedUser = localStorage.getItem('rememberUser');
+    if (savedUser) {
+      document.getElementById('loginId').value = savedUser;
+      document.getElementById('rememberMe').checked = true;
+    }
+
+    // Util: toast ringan
+    function showToast(message, isError = false) {
+      const toast = document.createElement('div');
+      toast.innerText = message;
+      toast.style.position = 'fixed';
+      toast.style.bottom = '20px';
+      toast.style.right = '20px';
+      toast.style.backgroundColor = isError ? '#dc3545' : '#0d6efd';
+      toast.style.color = '#fff';
+      toast.style.padding = '12px 20px';
+      toast.style.borderRadius = '8px';
+      toast.style.boxShadow = '0 2px 10px rgba(0,0,0,0.25)';
+      toast.style.opacity = 0;
+      toast.style.zIndex = 2000;
+      toast.style.transition = 'opacity 0.35s ease';
+      document.body.appendChild(toast);
+      requestAnimationFrame(() => (toast.style.opacity = 1));
+      setTimeout(() => (toast.style.opacity = 0), 1800);
+      setTimeout(() => document.body.removeChild(toast), 2200);
+    }
+  </script>
+</body>
+</html>

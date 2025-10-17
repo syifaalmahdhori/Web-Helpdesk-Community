@@ -1,0 +1,260 @@
+/* style.css */
+
+/* Reset & layout dasar */
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+    background-color: #f8f9fa;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+    background-color: #f8f9fa;
+    padding-top: 75px;  /* ruang untuk navbar fixed */
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 75px; /* tinggi navbar */
+    left: -250px; /* default tersembunyi */
+    width: 250px;
+    height: calc(100vh - 75px);
+    background: linear-gradient(to bottom, #374151, #1E3A8A);
+    color: white;
+    padding: 20px;
+    transition: left 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.4);
+    border-radius: 0; /* lurus supaya menyatu dengan navbar */
+    
+}
+
+/* Sidebar muncul */
+.sidebar.show {
+    left: 0;
+}
+
+/* Logo di sidebar */
+.sidebar .logo {
+    height: 120px;        /* tinggi logo */
+    width: auto;           /* pertahankan proporsi asli */
+    display: block;
+    margin: 0 auto 20px auto; /* center dan margin bawah */
+    border: 5px solid #ffffff; /* border menempel ke gambar */
+    border-radius: 50%;     /* lingkaran */
+    padding: 0;             /* tanpa jarak antara border dan gambar */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    object-fit: cover;      /* menjaga proporsi gambar */
+    overflow-y: auto; /* scroll vertikal jika konten lebih panjang */
+}
+
+.sidebar .logo:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Menu link sidebar */
+.sidebar a {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 12px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease, padding-left 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Hover animasi */
+.sidebar a:hover {
+    background: linear-gradient(to right, #1F2937, #1E3A8A);
+    padding-left: 20px;
+    box-shadow: inset 2px 0 0 #0d6efd;
+}
+
+/* Icon kecil di menu sidebar */
+.sidebar a i {
+    margin-right: 10px;
+}
+
+/* Konten utama */
+/* Body / konten utama mulai di bawah navbar */
+.content {
+    margin-top: 10px;  /* sama dengan tinggi navbar */
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.content.shift {
+    margin-left: 250px;
+}
+
+.navbar {
+    position: fixed;            /* tetap menempel saat scroll */
+    top: 0;                     /* mulai dari atas layar */
+    left: 0;
+    width: 100%;
+    z-index: 1100;              /* lebih tinggi dari sidebar */
+    background: linear-gradient(to right, #1F2937, #1E3A8A);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    padding: 0.5rem 1rem;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Navbar brand */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: white !important;
+    display: flex;
+    align-items: center;
+}
+
+/* Tombol toggle burger */
+#sidebarToggle {
+    background-color: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#sidebarToggle:hover {
+    background-color: rgba(255,255,255,0.25);
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+/* Bagian akun & notifikasi */
+.navbar .ms-auto {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+/* Notifikasi dengan badge */
+.navbar .ms-auto .badge {
+    font-size: 0.65rem;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+}
+
+/* Navbar shift saat sidebar terbuka */
+.navbar.shift {
+    margin-left: 250px;
+}
+
+/* CREATE TIKET*/
+/* Card form */
+.card {
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Form input hover & focus */
+form .form-control:focus, form .form-select:focus, form textarea:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 8px rgba(13,110,253,0.3);
+}
+
+/* Button submit */
+button.btn-primary {
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+button.btn-primary:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+
+/* DAFTAR TABLE */
+/* Daftar Tiket Table Styling */
+#ticketTable {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#ticketTable thead {
+    background: linear-gradient(90deg, #495057, #343a40);
+    color: #fff;
+    text-align: center;
+}
+
+#ticketTable thead th {
+    border: none;
+    padding: 12px 15px;
+    font-weight: 600;
+}
+
+#ticketTable tbody td {
+    vertical-align: middle;
+    padding: 10px 12px;
+    text-align: center;
+}
+
+#ticketTable tbody tr {
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#ticketTable tbody tr:hover {
+    background-color: #e9ecef;
+    transform: scale(1.01);
+}
+
+/* AGENTS TABLE */
+/* Agents Table Styling */
+#agentsTable {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#agentsTable thead {
+    background: linear-gradient(90deg, #343a40, #495057);
+    color: #fff;
+    text-align: center;
+}
+
+#agentsTable thead th {
+    border: none;
+    padding: 12px 15px;
+    font-weight: 600;
+}
+
+#agentsTable tbody td {
+    vertical-align: middle;
+    padding: 10px 12px;
+    text-align: center;
+}
+
+#agentsTable tbody tr {
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#agentsTable tbody tr:hover {
+    background-color: #e9ecef;
+    transform: scale(1.01);
+}
+
+/* Badge status lebih modern */
+#agentsTable .badge {
+    font-size: 0.85rem;
+    padding: 0.4em 0.75em;
+}

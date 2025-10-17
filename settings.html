@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Tiket - Helpdesk</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="css/style.css"> <!-- CSS eksternal -->
+
+<!-- Favicon / logo di tab browser -->
+<link rel="icon" type="image/png" href="image/icon_helpdesk1.png">
+</head>
+
+<body>
+    <!-- Navbar atas -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <div class="container-fluid d-flex align-items-center">
+            <button class="btn btn-outline-light me-2" id="sidebarToggle" type="button">☰</button>
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="image/icon_helpdesk.png" alt="Logo" style="height:50px; margin-right:10px;">
+                Helpdesk
+            </a>
+            <div class="ms-auto d-flex align-items-center">
+
+            <!-- Notifikasi Dropdown -->
+            <div class="dropdown me-3">
+                <button class="btn btn-outline-light position-relative" id="notifDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-bell"></i>
+                <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                    <span class="visually-hidden">New alerts</span>
+                </span>
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="notifDropdown" style="min-width: 300px;">
+                <li class="dropdown-header fw-semibold">Notifikasi</li>
+                <li><hr class="dropdown-divider"></li>
+
+                <li>
+                    <a class="dropdown-item d-flex align-items-start gap-2" href="#">
+                    <i class="bi bi-exclamation-circle text-warning fs-5"></i>
+                    <div>
+                        <div class="fw-semibold">Tiket Baru: #125</div>
+                        <small class="text-muted">User HR melaporkan masalah login</small>
+                    </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="dropdown-item d-flex align-items-start gap-2" href="#">
+                    <i class="bi bi-tools text-primary fs-5"></i>
+                    <div>
+                        <div class="fw-semibold">Tiket #118 Ditugaskan ke Kamu</div>
+                        <small class="text-muted">Kategori: Network</small>
+                    </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="dropdown-item d-flex align-items-start gap-2" href="#">
+                    <i class="bi bi-check-circle text-success fs-5"></i>
+                    <div>
+                        <div class="fw-semibold">Tiket #110 Selesai</div>
+                        <small class="text-muted">Oleh Software Team</small>
+                    </div>
+                    </a>
+                </li>
+
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item text-center text-primary fw-semibold" href="daftar_tiket.html">
+                    Lihat Semua Tiket
+                    </a>
+                </li>
+                </ul>
+            </div>
+
+            <!-- Dropdown User -->
+            <div class="dropdown">
+                <button class="btn btn-outline-light d-flex align-items-center gap-2 dropdown-toggle"
+                        type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle fs-5"></i>
+                <span>Admin</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton">
+                <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2" href="my_account.html">
+                    <i class="bi bi-person"></i> My Account
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2" href="create_account.html">
+                    <i class="bi bi-person-plus"></i> Create Account
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2" href="settings.html">
+                    <i class="bi bi-gear"></i> Settings
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item text-danger d-flex align-items-center gap-2" href="login.html">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+
+                </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar kiri -->
+    <div class="sidebar" id="sidebarMenu">
+        <img src="image/user.png" alt="Logo" class="logo">
+        <h4 class="text-center mb-3">Menu</h4>
+        <a href="index.html"><i class="bi bi-house-door"></i> Dashboard</a>
+        <a href="create_tiket.html"><i class="bi bi-plus-circle"></i> Create Tiket</a>
+        <a href="daftar_tiket.html"><i class="bi bi-list-check"></i> Daftar Tiket</a>
+        <a href="agents.html"><i class="bi bi-people"></i> Agents</a>
+        <a href="my_account.html"><i class="bi bi-person-badge"></i> My Account</a>
+        <a href="create_account.html"><i class="bi bi-person-plus"></i> Create Account</a>
+        <a href="login.html"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+    </div>
+
+<!-- CONTENT -->
+<div class="content" id="mainContent">
+  <h2 class="mb-4">Settings</h2>
+
+  <div class="row g-4">
+    <!-- APPEARANCE -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header"><i class="bi bi-palette me-1"></i>Appearance</div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label class="form-label">Theme</label>
+            <div class="d-flex gap-3 flex-wrap">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="theme" id="themeAuto" value="auto">
+                <label class="form-check-label" for="themeAuto">Auto (System)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="theme" id="themeLight" value="light">
+                <label class="form-check-label" for="themeLight">Light</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="theme" id="themeDark" value="dark">
+                <label class="form-check-label" for="themeDark">Dark</label>
+              </div>
+            </div>
+            <div class="form-text">Dark mode memakai <code>data-bs-theme</code> Bootstrap 5.3.</div>
+          </div>
+
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="prefSidebarOpen">
+            <label class="form-check-label" for="prefSidebarOpen">Sidebar default terbuka</label>
+          </div>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="prefCompact">
+            <label class="form-check-label" for="prefCompact">Compact mode (jarak komponen lebih rapat)</label>
+          </div>
+
+          <div class="text-end mt-3">
+            <button class="btn btn-primary" id="saveAppearance"><i class="bi bi-save me-1"></i> Simpan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header"><i class="bi bi-bell me-1"></i>Notifications</div>
+        <div class="card-body">
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="notifEmail" checked>
+            <label class="form-check-label" for="notifEmail">Email notifikasi</label>
+          </div>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="notifInApp" checked>
+            <label class="form-check-label" for="notifInApp">In-app notifikasi</label>
+          </div>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="notifSound">
+            <label class="form-check-label" for="notifSound">Bunyikan suara notifikasi</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="notifTicketUpdates" checked>
+            <label class="form-check-label" for="notifTicketUpdates">Update status tiket (Open → In Progress → Closed)</label>
+          </div>
+
+          <div class="text-end mt-3">
+            <button class="btn btn-primary" id="saveNotif"><i class="bi bi-save me-1"></i> Simpan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DATA & PRIVACY -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header"><i class="bi bi-shield-lock me-1"></i>Data & Privacy</div>
+        <div class="card-body">
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">Ingat saya di perangkat ini</label>
+          </div>
+
+          <div class="d-flex gap-2 mt-2">
+            <button class="btn btn-outline-danger" id="clearLocal"><i class="bi bi-trash3 me-1"></i> Hapus Data Lokal</button>
+            <a class="btn btn-outline-secondary" href="my_account.html"><i class="bi bi-person"></i> Kelola Akun</a>
+          </div>
+
+          <div class="form-text mt-2">
+            Data lokal meliputi preferensi tampilan, sidebar, dan “remember me”.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SISTEM -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header"><i class="bi bi-gear-wide-connected me-1"></i>Sistem</div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="language" class="form-label">Bahasa</label>
+            <select id="language" class="form-select">
+              <option value="id" selected>Indonesia</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="density" class="form-label">Density</label>
+            <select id="density" class="form-select">
+              <option value="comfortable" selected>Comfortable</option>
+              <option value="compact">Compact</option>
+            </select>
+          </div>
+
+          <div class="text-end">
+            <button class="btn btn-primary" id="saveSystem"><i class="bi bi-save me-1"></i> Simpan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /row -->
+</div><!-- /content -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/sidebar.js"></script>
+
+<script>
+  // ===== Utilities =====
+  const $ = (sel) => document.querySelector(sel);
+  function showToast(message, isError = false) {
+    const toast = document.createElement('div');
+    toast.innerText = message;
+    toast.style.position = 'fixed';
+    toast.style.bottom = '20px';
+    toast.style.right = '20px';
+    toast.style.backgroundColor = isError ? '#dc3545' : '#0d6efd';
+    toast.style.color = '#fff';
+    toast.style.padding = '12px 20px';
+    toast.style.borderRadius = '6px';
+    toast.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+    toast.style.opacity = 0;
+    toast.style.zIndex = 2000;
+    toast.style.transition = 'opacity 0.35s ease';
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => (toast.style.opacity = 1));
+    setTimeout(() => (toast.style.opacity = 0), 1800);
+    setTimeout(() => document.body.removeChild(toast), 2200);
+  }
+
+  // ===== Load Saved Settings =====
+  function loadSettings() {
+    // Theme
+    const theme = localStorage.getItem('pref_theme') || 'auto';
+    if (theme === 'light') document.documentElement.setAttribute('data-bs-theme', 'light');
+    if (theme === 'dark') document.documentElement.setAttribute('data-bs-theme', 'dark');
+    if (theme === 'auto') document.documentElement.removeAttribute('data-bs-theme');
+
+    $('#themeAuto').checked = theme === 'auto';
+    $('#themeLight').checked = theme === 'light';
+    $('#themeDark').checked = theme === 'dark';
+
+    // Sidebar default open
+    const sidebarOpen = localStorage.getItem('pref_sidebar_open') === 'true';
+    $('#prefSidebarOpen').checked = sidebarOpen;
+
+    // Compact
+    const compact = localStorage.getItem('pref_compact') === 'true';
+    $('#prefCompact').checked = compact;
+    document.body.classList.toggle('compact', compact);
+
+    // Notifications
+    $('#notifEmail').checked = localStorage.getItem('notif_email') !== 'false';
+    $('#notifInApp').checked = localStorage.getItem('notif_inapp') !== 'false';
+    $('#notifSound').checked = localStorage.getItem('notif_sound') === 'true';
+    $('#notifTicketUpdates').checked = localStorage.getItem('notif_ticket_updates') !== 'false';
+
+    // Data & Privacy
+    $('#rememberMe').checked = localStorage.getItem('rememberUser') ? true : false;
+
+    // System
+    const lang = localStorage.getItem('sys_language') || 'id';
+    const density = localStorage.getItem('sys_density') || 'comfortable';
+    $('#language').value = lang;
+    $('#density').value = density;
+    document.body.classList.toggle('density-compact', density === 'compact');
+  }
+
+  // ===== Save Handlers =====
+  $('#saveAppearance').addEventListener('click', () => {
+    const theme = document.querySelector('input[name="theme"]:checked')?.value || 'auto';
+    localStorage.setItem('pref_theme', theme);
+    if (theme === 'light') document.documentElement.setAttribute('data-bs-theme', 'light');
+    if (theme === 'dark') document.documentElement.setAttribute('data-bs-theme', 'dark');
+    if (theme === 'auto') document.documentElement.removeAttribute('data-bs-theme');
+
+    const sidebarOpen = $('#prefSidebarOpen').checked;
+    localStorage.setItem('pref_sidebar_open', sidebarOpen);
+    // biar sinkron dengan implementasi sidebar kamu (opsional):
+    if (sidebarOpen) localStorage.setItem('sidebarOpen', true);
+
+    const compact = $('#prefCompact').checked;
+    localStorage.setItem('pref_compact', compact);
+    document.body.classList.toggle('compact', compact);
+
+    showToast('Appearance disimpan!');
+  });
+
+  $('#saveNotif').addEventListener('click', () => {
+    localStorage.setItem('notif_email', $('#notifEmail').checked);
+    localStorage.setItem('notif_inapp', $('#notifInApp').checked);
+    localStorage.setItem('notif_sound', $('#notifSound').checked);
+    localStorage.setItem('notif_ticket_updates', $('#notifTicketUpdates').checked);
+    showToast('Notifikasi disimpan!');
+  });
+
+  $('#saveSystem').addEventListener('click', () => {
+    const lang = $('#language').value;
+    const density = $('#density').value;
+    localStorage.setItem('sys_language', lang);
+    localStorage.setItem('sys_density', density);
+    document.body.classList.toggle('density-compact', density === 'compact');
+    showToast('Pengaturan sistem disimpan!');
+  });
+
+  $('#clearLocal').addEventListener('click', () => {
+    if (confirm('Hapus seluruh data lokal (preferensi & remember me)?')) {
+      localStorage.clear();
+      showToast('Data lokal dihapus. Memuat ulang...');
+      setTimeout(() => location.reload(), 700);
+    }
+  });
+
+  // ===== On Load =====
+  document.addEventListener('DOMContentLoaded', loadSettings);
+</script>
+
+<style>
+/* Opsional: gaya compact & density */
+body.compact .form-control,
+body.compact .form-select,
+body.compact .btn { padding-top: .35rem; padding-bottom: .35rem; }
+
+body.density-compact .table td, 
+body.density-compact .table th { padding: .4rem .5rem; }
+</style>
+
+</body>
+</html>
