@@ -65,18 +65,13 @@ Aplikasi ini dibuat dengan antarmuka modern, responsif, dan mudah digunakan — 
 
 ├── forgot_password.html # Lupa password
 
-│
 
 ├── css/
 
-│
 └── style.css # File gaya utama
-
-│
 
 ├── js/
 
-│
 ├── sidebar.js # Logika sidebar & toggle state
 
 │
